@@ -35,8 +35,12 @@ operatorButtons.forEach((button) => {
 equalsButton.addEventListener('click', () => {
   calculation['secondOperand'] = currentOperand;
   currentOperand = operate(calculation['operator'], Number(calculation['firstOperand']), Number(calculation['secondOperand']));
-  display(currentOperand);
-})
+  if (currentOperand.toString().length > 8) {
+    display(currentOperand.toPrecision(8));
+  } else {
+    display(currentOperand);
+  };
+});
 
 // Allow inputted number to be displayed on calculator's display.
 function display(number) {
