@@ -1,19 +1,46 @@
-// Define basic math functions for two operands.
+let currentOperand = "";
+let calculation = {};
 
-function add(firstOperand, secondOperand) {
-  return firstOperand + secondOperand;
-}
+// Call all document elements relevant to calculator UI.
+const numericalButtons = document.querySelectorAll('.digit');
+const operatorButtons = document.querySelectorAll('.operator');
+const clearButton = document.querySelector('#clear-all');
+const equalsButton = document.querySelector('#equals');
+const displayScreen = document.querySelector('#output');
 
-function subtract(firstOperand, secondOperand) {
-  return firstOperand - secondOperand;
-}
+// Add event listener to all numerical buttons such that a press calls the processNumber function with the button's numerical value as an argument.
+numericalButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    currentOperand += button.value;
+    display(currentOperand);
+  });
+})
 
-function multiply(firstOperand, secondOperand) {
-  return firstOperand * secondOperand;
-}
+// Add event listener to the clear button such that a press clears the current operand and clears the screen accordingly.
+clearButton.addEventListener('click', () => {
+  calculation = {};
+  currentOperand = "";
+  display(currentOperand);
+})
 
-function divide(firstOperand, secondOperand) {
-  return firstOperand / secondOperand;
+operatorButtons.forEach((button) => { 
+  button.addEventListener('click', () => {
+    calculation['firstOperand'] = currentOperand;
+    calculation['operator'] = button.value;
+    currentOperand = "";
+    display(currentOperand);
+  })
+})
+
+equalsButton.addEventListener('click', () => {
+  calculation['secondOperand'] = currentOperand;
+  currentOperand = operate(calculation['operator'], Number(calculation['firstOperand']), Number(calculation['secondOperand']));
+  display(currentOperand);
+})
+
+// Allow inputted number to be displayed on calculator's display.
+function display(number) {
+  displayScreen.textContent = number;
 }
 
 /**
@@ -29,12 +56,29 @@ function operate(operator, firstOperand, secondOperand) {
   switch (operator) {
     case "+":
       return add(firstOperand, secondOperand);
-    case "-":
+    case "−":
       return subtract(firstOperand, secondOperand);
-    case "*":
+    case "×":
       return multiply(firstOperand, secondOperand);
-    case "/":
+    case "÷":
       return divide(firstOperand, secondOperand);
   };
+}
 
+// Defines basic math functions for two operands.
+
+function add(firstOperand, secondOperand) {
+  return firstOperand + secondOperand;
+}
+
+function subtract(firstOperand, secondOperand) {
+  return firstOperand - secondOperand;
+}
+
+function multiply(firstOperand, secondOperand) {
+  return firstOperand * secondOperand;
+}
+
+function divide(firstOperand, secondOperand) {
+  return firstOperand / secondOperand;
 }

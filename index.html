@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>Calculator</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <section id="calculator">
       <div id="screen-container">
-        <span id="output">100</span>
+        <span id="output"></span>
       </div>
       <div id="buttons-container">
         <div class="digit-container-small">
-          <input class="function" type="button" value="AC">
+          <input id="clear-all" class="function" type="button" value="AC">
         </div>
         <div class="digit-container-small"></div>
         <div class="digit-container-small"></div>
         <div class="digit-container-small">
-          <input class="operand" type="button" value=&divide;>
+          <input class="operand operator" type="button" value=&divide;>
         </div>
         <div class="digit-container-small" id="7">
           <input class="digit" type="button" value=7>
@@ -30,7 +30,7 @@
           <input class="digit" type="button" value=9>
         </div>
         <div class="digit-container-small">
-          <input class="operand" type="button" value=&times;>
+          <input class="operand operator" type="button" value=&times;>
         </div>
         <div class="digit-container-small" id="4">
           <input class="digit" type="button" value=4>
@@ -42,7 +42,7 @@
           <input class="digit" type="button" value=6>
         </div>
         <div class="digit-container-small">
-          <input class="operand" type="button" value=&#8722;>
+          <input class="operand operator" type="button" value=&#8722;>
         </div>
         <div class="digit-container-small" id="1">
           <input class="digit" type="button" value=1>
@@ -54,7 +54,7 @@
           <input class="digit" type="button" value=3>
         </div>
         <div class="digit-container-small">
-          <input class="operand" type="button" value=&plus;>
+          <input class="operand operator" type="button" value=&plus;>
         </div>
         <div class="digit-container-small">
           <input class="digit" type="button" value=0>
@@ -64,7 +64,7 @@
           <input class="digit" type="button" value=".">
         </div>
         <div class="digit-container-small">
-          <input class="operand" type="button" value=&equals;>
+          <input id="equals" class="operand" type="button" value=&equals;>
         </div>
       </div>
     </section>
